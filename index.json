@@ -8,6 +8,13 @@
       "description": "Example skill demonstrating the registry skill format. Trigger: When working with example patterns or learning the skill system.\n",
       "author": "sisques-labs",
       "version": "1.0"
+    },
+    {
+      "name": "nestjs-sisques-labs",
+      "type": "skill",
+      "description": "NestJS project conventions for sisques-labs — DDD, CQRS, Hexagonal Architecture with GraphQL (Apollo Federation), MongoDB, Kafka, and pnpm workspaces. Trigger: When creating, writing, reviewing, or refactoring NestJS code in a sisques-labs project.\n",
+      "author": "sisques-labs",
+      "version": "1.0"
     }
   ],
   "agents": [
@@ -15,6 +22,13 @@
       "name": "example-agent",
       "type": "agent",
       "description": "Example agent for demonstration purposes. Useful for testing registry installation.\n",
+      "author": "sisques-labs",
+      "version": "1.0"
+    },
+    {
+      "name": "nestjs-architect",
+      "type": "agent",
+      "description": "Senior NestJS architect specialized in sisques-labs conventions — DDD, CQRS, Hexagonal Architecture, GraphQL, MongoDB, Kafka. Generates production-ready code following the nestjs-sisques-labs skill.\n",
       "author": "sisques-labs",
       "version": "1.0"
     }

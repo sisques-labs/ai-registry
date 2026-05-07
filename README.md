@@ -1,92 +1,105 @@
-# 🤖 AI Registry
+# AI Registry
 
-**Your personal registry of AI skills and agents.** Instalable via terminal a nivel
-usuario o proyecto. Compatible con OpenCode, Claude Code, Cursor, Gemini, y Copilot.
+**Your personal registry of AI skills and agents.** Installable via terminal at user or
+project level. Compatible with **OpenCode**, **Claude Code**, **Cursor**, **Gemini**, and **Copilot**.
 
-## Installación
+## Quick Install (one-liner)
 
 ```bash
-# Clonar el repo
-git clone <url> ~/ai-registry
+# Install everything at user level (default)
+curl -fsSL https://raw.githubusercontent.com/sisques-labs/ai-registry/main/bootstrap.sh | bash
+
+# Install at project level
+curl -fsSL https://raw.githubusercontent.com/sisques-labs/ai-registry/main/bootstrap.sh | bash -s -- --project
+
+# Install for a specific tool
+curl -fsSL https://raw.githubusercontent.com/sisques-labs/ai-registry/main/bootstrap.sh | bash -s -- --tool claude
+```
+
+## Manual Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/sisques-labs/ai-registry.git ~/ai-registry
 cd ~/ai-registry
 
-# Instalar TODO de una (skills + agentes + commands a nivel usuario para OpenCode)
+# Install EVERYTHING at once (skills + agents + commands at user level for OpenCode)
 ./install.sh all
 
-# O por partes
-./install.sh skills           # Todos los skills
-./install.sh agents           # Todos los agentes
-./install.sh commands         # Todos los commands
+# Or by category
+./install.sh skills           # All skills
+./install.sh agents           # All agents
+./install.sh commands         # All commands
 
-# O uno por uno
+# Or individually
 ./install.sh skill <name>
 ./install.sh agent <name>
 ./install.sh command <name>
 ```
 
-## Niveles de instalación
+## Installation Levels
 
-| Flag | Destino | Ejemplo |
-|------|---------|---------|
-| `--user` (default) | `~/.config/opencode/...` | Skills del sistema |
-| `--project` | `./skills/`, `./opencode.json` | Skills del proyecto |
-| `--tool <tool>` | Especifica la tool | `opencode`, `claude`, `cursor`, `gemini`, `copilot` |
+| Flag | Target | Example |
+|------|--------|---------|
+| `--user` (default) | `~/.config/opencode/...` | System-wide skills |
+| `--project` | `./skills/`, `./opencode.json` | Project-level skills |
+| `--tool <tool>` | Specific tool config | `opencode`, `claude`, `cursor`, `gemini`, `copilot` |
 
-### Ejemplos
+### Examples
 
 ```bash
-# Instalar skills a nivel proyecto para OpenCode
+# Install skills at project level for OpenCode
 ./install.sh skills --project
 
-# Instalar un agente específico a nivel usuario
-./install.sh agent mi-revisor --user
+# Install a specific agent at user level
+./install.sh agent my-reviewer --user
 
-# Instalar skills para Claude Code
+# Install skills for Claude Code
 ./install.sh skills --tool claude
 
-# Instalar todo a nivel proyecto
+# Install everything at project level
 ./install.sh all --project
 ```
 
-## Comandos
+## Commands
 
 ```bash
-install.sh all                         # Instalar todo
-install.sh skills                      # Todos los skills
-install.sh agents                      # Todos los agentes
-install.sh commands                    # Todos los commands
-install.sh skill <nombre>              # Un skill específico
-install.sh agent <nombre>              # Un agente específico
-install.sh command <nombre>            # Un comando específico
-install.sh ls                          # Listar disponible
-install.sh create skill <nombre>       # Scaffold nuevo skill
-install.sh create agent <nombre>       # Scaffold nuevo agente
-install.sh create command <nombre>     # Scaffold nuevo comando
-install.sh index                       # Regenerar index.json
-install.sh --help                      # Ayuda
+install.sh all                         # Install everything
+install.sh skills                      # All skills
+install.sh agents                      # All agents
+install.sh commands                    # All commands
+install.sh skill <name>               # A specific skill
+install.sh agent <name>               # A specific agent
+install.sh command <name>             # A specific command
+install.sh ls                          # List available items
+install.sh create skill <name>        # Scaffold a new skill
+install.sh create agent <name>        # Scaffold a new agent
+install.sh create command <name>      # Scaffold a new command
+install.sh index                       # Regenerate index.json
+install.sh --help                      # Show help
 ```
 
-## Estructura del Registry
+## Registry Structure
 
 ```
-├── index.json          # Catálogo autogenerado de skills/agentes/commands
+├── index.json          # Auto-generated catalog of skills/agents/commands
 ├── install.sh          # CLI — entry point
 ├── lib/
-│   └── utils.sh        # Funciones compartidas (resolve, install, scaffold)
-├── skills/             # Tus skills
-│   ├── <nombre>/
-│   │   ├── SKILL.md    # Skill instructions (formato Gentle AI)
-│   │   ├── assets/     # Templates, schemas, ejemplos
-│   │   └── references/ # Documentación local
+│   └── utils.sh        # Shared functions (resolve, install, scaffold)
+├── skills/             # Your skills
+│   ├── <name>/
+│   │   ├── SKILL.md    # Skill instructions (Gentle AI format)
+│   │   ├── assets/     # Templates, schemas, examples
+│   │   └── references/ # Local documentation
 │   └── ...
-├── agents/             # Tus agentes
-│   ├── <nombre>/
-│   │   ├── AGENT.md    # Persona e instrucciones
-│   │   └── opencode.json # Definición del agente (se inyecta en opencode.json)
+├── agents/             # Your agents
+│   ├── <name>/
+│   │   ├── AGENT.md    # Persona and instructions
+│   │   └── opencode.json # Agent definition (injected into opencode.json)
 │   └── ...
 ├── commands/           # Slash commands
-│   ├── <nombre>/
-│   │   └── COMMAND.md  # Definición del comando
+│   ├── <name>/
+│   │   └── COMMAND.md  # Command definition
 │   └── ...
 └── templates/          # Scaffolding
     ├── skill/
@@ -94,41 +107,41 @@ install.sh --help                      # Ayuda
     └── command/
 ```
 
-## Formato de Skills
+## Skill Format
 
-Cada skill es un directorio con un `SKILL.md` que sigue el formato Gentle AI:
+Each skill is a directory with a `SKILL.md` following the Gentle AI format:
 
 ```yaml
 ---
-name: mi-skill
+name: my-skill
 description: >
-  Descripción del skill.
-  Trigger: Cuándo debe cargarse.
+  Description of the skill.
+  Trigger: When the AI should load this skill.
 license: Apache-2.0
 metadata:
-  author: tu-nombre
+  author: your-name
   version: "1.0"
 ---
 ```
 
-El `SKILL.md` debe incluir:
-- **When to Use**: cuándo aplica
-- **Critical Patterns**: las reglas más importantes (lo que inyecta el resolver)
-- **Code Examples**: ejemplos mínimos y enfocados
-- **Commands**: comandos comunes
+The `SKILL.md` must include:
+- **When to Use**: when the skill applies
+- **Critical Patterns**: the most important rules (what the resolver injects)
+- **Code Examples**: minimal, focused examples
+- **Commands**: common commands
 
-## Formato de Agentes
+## Agent Format
 
-Cada agente tiene:
-- `AGENT.md` — persona, instrucciones y constraints
-- `opencode.json` — definición del agente para OpenCode (se registra automáticamente al instalar)
+Each agent has:
+- `AGENT.md` — persona, instructions, and constraints
+- `opencode.json` — agent definition for OpenCode (auto-registered on install)
 
 ```json
 {
-  "description": "Descripción del agente",
+  "description": "Agent description",
   "hidden": true,
   "mode": "subagent",
-  "prompt": "Instrucciones completas del agente",
+  "prompt": "Full agent instructions",
   "tools": {
     "bash": true,
     "edit": true,
@@ -138,23 +151,72 @@ Cada agente tiene:
 }
 ```
 
-## Skill Registry (integración con Gentle AI)
+## Skill Registry (Gentle AI integration)
 
-Este registry genera automáticamente un `index.json` con el catálogo completo.
-Si usás el sistema SDD de Gentle AI, podés integrar estos skills ejecutando:
+This registry auto-generates an `index.json` with the full catalog.
+If you use the Gentle AI SDD system, integrate these skills by running:
 
 ```bash
-./install.sh index   # regenera index.json
+./install.sh index   # regenerates index.json
 ```
 
-Luego, el skill resolver de Gentle AI puede consumir este registry para
-inyectar reglas compactas en sub-agentes.
+The Gentle AI skill resolver can then consume this registry to inject compact rules into sub-agents.
 
-## Roadmap (ideas)
+## Publishing & Distribution
 
-- [ ] Soporte para dependencias entre skills
-- [ ] `install.sh update` — actualizar skills instalados
-- [ ] `install.sh remove <name>` — desinstalar
-- [ ] Validación de sintaxis SKILL.md antes de instalar
-- [ ] Perfiles de instalación (`--profile backend`, `--profile frontend`)
-- [ ] Publicación como paquete (brew, npm, etc.)
+This registry is designed to work across all your projects. Here are the available distribution methods:
+
+### 1. One-liner curl (recommended for quick setup)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/sisques-labs/ai-registry/main/bootstrap.sh | bash
+```
+
+Clones the repo, runs the installer, cleans up. No leftovers.
+
+### 2. Git clone (recommended for development)
+
+```bash
+git clone https://github.com/sisques-labs/ai-registry.git ~/ai-registry
+cd ~/ai-registry
+./install.sh all --project  # install into your current project
+```
+
+Keeps the registry locally so you can update with `git pull`.
+
+### 3. npm / GitHub Packages (planned)
+
+Published as `@sisques-labs/ai-registry` to GitHub Packages:
+
+```bash
+# Future
+npx @sisques-labs/ai-registry install --project
+```
+
+### 4. GitHub template repo
+
+Fork or use this repo as a template to create your own skills registry.
+Enable "Template repository" in your GitHub repo settings.
+
+### 5. Git submodule
+
+Add to any project for direct reference:
+
+```bash
+git submodule add https://github.com/sisques-labs/ai-registry.git .ai-registry
+.ai-registry/install.sh all --project
+```
+
+### 6. GitHub Actions auto-deploy
+
+On every push to `main`, the registry can auto-deploy to npm and
+create a GitHub Release with the one-liner install command.
+
+## Roadmap
+
+- [ ] Skill dependency support
+- [ ] `install.sh update` — update installed skills
+- [ ] `install.sh remove <name>` — uninstall
+- [ ] `SKILL.md` syntax validation before install
+- [ ] Installation profiles (`--profile backend`, `--profile frontend`)
+- [ ] Package distribution (brew, npm, etc.)
