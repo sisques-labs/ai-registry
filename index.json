@@ -1,0 +1,29 @@
+{
+  "name": "ai-registry",
+  "description": "AI Skills & Agents Registry",
+  "skills": [
+    {
+      "name": "example-skill",
+      "type": "skill",
+      "description": "Example skill demonstrating the registry skill format. Trigger: When working with example patterns or learning the skill system.\n",
+      "author": "sisques-labs",
+      "version": "1.0"
+    }
+  ],
+  "agents": [
+    {
+      "name": "example-agent",
+      "type": "agent",
+      "description": "Example agent for demonstration purposes. Useful for testing registry installation.\n",
+      "author": "sisques-labs",
+      "version": "1.0"
+    }
+  ],
+  "commands": [
+    {
+      "name": "example-command",
+      "type": "command",
+      "description": "Example command demonstrating the registry command format"
+    }
+  ]
+}

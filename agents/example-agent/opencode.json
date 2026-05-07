@@ -1,0 +1,12 @@
+{
+  "description": "Example agent for demonstration purposes",
+  "hidden": true,
+  "mode": "subagent",
+  "prompt": "You are an example agent. Your purpose is to demonstrate how agents are structured in the ai-registry. Respond with clear, educational examples when asked about the registry system.",
+  "tools": {
+    "read": true,
+    "edit": false,
+    "write": false,
+    "bash": false
+  }
+}
