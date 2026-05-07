@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs — AI Registry</title>
+  <meta name="description" content="Documentation for the AI Registry: structure, formats, and usage guides.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav id="nav" class="nav"></nav>
+
+  <main>
+    <div class="container">
+
+      <div class="page-header">
+        <h1>Documentation</h1>
+        <p>How the AI Registry works, its structure, and how to create your own skills and agents.</p>
+      </div>
+
+      <!-- Registry Structure -->
+      <h2>Registry Structure</h2>
+      <p>The registry is organized as follows:</p>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">tree</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>.
+├── index.json          # Auto-generated catalog
+├── install.sh          # CLI — entry point
+├── bootstrap.sh        # One-liner bootstrap
+├── lib/
+│   └── utils.sh        # Shared functions
+├── skills/             # Your skills
+│   ├── &lt;name&gt;/
+│   │   ├── SKILL.md    # Skill instructions
+│   │   ├── assets/     # Templates, schemas
+│   │   └── references/ # Local documentation
+│   └── ...
+├── agents/             # Your agents
+│   ├── &lt;name&gt;/
+│   │   ├── AGENT.md    # Persona and instructions
+│   │   └── opencode.json # Agent definition
+│   └── ...
+├── commands/           # Slash commands
+│   ├── &lt;name&gt;/
+│   │   └── COMMAND.md  # Command definition
+│   └── ...
+└── templates/          # Scaffolding
+    ├── skill/
+    ├── agent/
+    └── command/</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <!-- Skill Format -->
+      <h2>Skill Format</h2>
+      <p>Each skill is a directory with a <code>SKILL.md</code> file following the Gentle AI format. Frontmatter provides metadata:</p>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">yaml</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>---
+name: my-skill
+description: >
+  Description of the skill.
+  Trigger: When the AI should load this skill.
+license: Apache-2.0
+metadata:
+  author: your-name
+  version: "1.0"
+---</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <p>The <code>SKILL.md</code> body must include:</p>
+      <ul style="color:var(--text-secondary);margin:var(--space-md) 0 var(--space-md) var(--space-lg);line-height:2">
+        <li><strong>When to Use</strong> — when the skill applies</li>
+        <li><strong>Critical Patterns</strong> — the most important rules (what the resolver injects)</li>
+        <li><strong>Code Examples</strong> — minimal, focused examples</li>
+        <li><strong>Commands</strong> — common commands</li>
+      </ul>
+
+      <!-- Agent Format -->
+      <h2>Agent Format</h2>
+      <p>Each agent has an <code>AGENT.md</code> and an <code>opencode.json</code> that defines it:</p>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">json</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>{
+  "description": "Agent description",
+  "hidden": true,
+  "mode": "subagent",
+  "prompt": "Full agent instructions",
+  "tools": {
+    "bash": true,
+    "edit": true,
+    "read": true,
+    "write": true
+  }
+}</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <!-- Commands -->
+      <h2>Available Commands</h2>
+      <p>The <code>install.sh</code> script provides these commands:</p>
+
+      <div style="overflow-x:auto;margin:var(--space-lg) 0">
+        <table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:0.8125rem">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border)">
+              <th style="text-align:left;padding:var(--space-sm) var(--space-md);color:var(--text-muted);white-space:nowrap">Command</th>
+              <th style="text-align:left;padding:var(--space-sm) var(--space-md);color:var(--text-muted)">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh all</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">Install everything</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh skills</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">All skills</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh agents</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">All agents</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh commands</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">All commands</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh skill &lt;name&gt;</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">A specific skill</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh agent &lt;name&gt;</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">A specific agent</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh command &lt;name&gt;</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">A specific command</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh ls</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">List available items</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh create skill &lt;name&gt;</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">Scaffold a new skill</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh create agent &lt;name&gt;</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">Scaffold a new agent</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh create command &lt;name&gt;</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">Scaffold a new command</td>
+            </tr>
+            <tr>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>install.sh index</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">Regenerate index.json</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Skill Registry Integration -->
+      <h2>Gentle AI Integration</h2>
+      <p>If you use the Gentle AI SDD system, integrate these skills by running:</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>./install.sh index   # regenerates index.json</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+      <p>The Gentle AI skill resolver can then consume this registry to inject compact rules into sub-agents.</p>
+
+      <!-- Creating Items -->
+      <h2>Creating New Items</h2>
+      <p>Use the scaffolding command to create a new skill, agent, or command:</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code># Create a new skill
+./install.sh create skill my-skill
+
+# Create a new agent
+./install.sh create agent my-agent
+
+# Create a new command
+./install.sh create command my-command</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+      <p>This scaffolds the directory structure and placeholder files from <code>templates/</code>.</p>
+
+      <!-- Index Regeneration -->
+      <h2>Index Regeneration</h2>
+      <p>After adding or modifying items, regenerate the index to keep the catalog up to date:</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>./install.sh index</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+      <p>This scans all <code>skills/</code>, <code>agents/</code>, and <code>commands/</code> directories and writes <code>index.json</code> with the full catalog.</p>
+
+      <!-- Roadmap -->
+      <h2>Roadmap</h2>
+      <ul style="color:var(--text-secondary);margin:var(--space-md) 0 var(--space-md) var(--space-lg);line-height:2.2">
+        <li>Skill dependency support</li>
+        <li><code>install.sh update</code> — update installed skills</li>
+        <li><code>install.sh remove &lt;name&gt;</code> — uninstall</li>
+        <li><code>SKILL.md</code> syntax validation before install</li>
+        <li>Installation profiles (<code>--profile backend</code>, <code>--profile frontend</code>)</li>
+        <li>Package distribution (brew, npm, etc.)</li>
+      </ul>
+
+    </div>
+  </main>
+
+  <footer id="footer" class="footer"></footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

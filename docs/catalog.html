@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog — AI Registry</title>
+  <meta name="description" content="Browse all available skills, agents, and commands in the AI Registry.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav id="nav" class="nav"></nav>
+
+  <main>
+    <div class="container">
+
+      <div class="page-header">
+        <h1>Catalog</h1>
+        <p>Browse all available skills, agents, and commands. Data loaded live from the registry.</p>
+      </div>
+
+      <!-- Search -->
+      <input
+        type="text"
+        id="catalog-search"
+        class="search-bar"
+        placeholder="> Search by name or description…"
+        autocomplete="off"
+      >
+
+      <!-- Tabs -->
+      <div id="catalog-tabs" class="tabs"></div>
+
+      <!-- Grid -->
+      <div id="catalog-grid">
+        <div class="loading">Loading catalog</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer id="footer" class="footer"></footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Registry — Skills & Agents for AI Editors</title>
+  <meta name="description" content="Your personal registry of AI skills and agents. Installable via terminal. Compatible with OpenCode, Claude Code, Cursor, Gemini, and Copilot.">
+  <meta property="og:title" content="AI Registry">
+  <meta property="og:description" content="Your personal registry of AI skills and agents. Installable via terminal.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sisques-labs.github.io/ai-registry/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation (rendered by JS) -->
+  <nav id="nav" class="nav"></nav>
+
+  <main>
+    <div class="container">
+
+      <!-- Hero -->
+      <section class="hero">
+        <h1>
+          AI Registry
+          <span class="cursor"></span>
+        </h1>
+        <p class="tagline">
+          Your personal registry of AI skills and agents.
+          Installable via terminal at user or project level.
+        </p>
+        <div class="btn-group" style="justify-content:center">
+          <a href="catalog.html" class="btn btn-primary">Browse Catalog</a>
+          <a href="install.html" class="btn btn-ghost">Installation Guide</a>
+          <a href="https://github.com/sisques-labs/ai-registry" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+        </div>
+      </section>
+
+      <!-- Stats (rendered by JS) -->
+      <div id="home-stats">
+        <div style="text-align:center;padding:2rem;color:var(--text-muted);font-family:var(--font-mono)" class="loading">Loading registry data</div>
+      </div>
+
+      <!-- Features (rendered by JS) -->
+      <div id="home-features"></div>
+
+      <!-- Quick Install -->
+      <section style="margin-top:var(--space-3xl)">
+        <h2>Quick Install</h2>
+        <p>Install everything at user level with a single command:</p>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot amber"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">bash</span>
+          </div>
+          <div class="terminal-body">
+            <pre><code>curl -fsSL https://raw.githubusercontent.com/sisques-labs/ai-registry/main/bootstrap.sh | bash</code></pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </div>
+
+        <p style="margin-top:var(--space-sm)">Or install at <strong>project level</strong>:</p>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot amber"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">bash</span>
+          </div>
+          <div class="terminal-body">
+            <pre><code>curl -fsSL https://raw.githubusercontent.com/sisques-labs/ai-registry/main/bootstrap.sh | bash -s -- --project</code></pre>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Compatible Tools -->
+      <section style="margin-top:var(--space-3xl)">
+        <h2>Compatible Tools</h2>
+        <p>Works with all major AI coding tools:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--space-md);margin-top:var(--space-lg)">
+          <span style="font-family:var(--font-mono);padding:var(--space-sm) var(--space-md);background:var(--bg-tertiary);border:1px solid var(--border);border-radius:var(--radius);font-size:0.875rem">OpenCode</span>
+          <span style="font-family:var(--font-mono);padding:var(--space-sm) var(--space-md);background:var(--bg-tertiary);border:1px solid var(--border);border-radius:var(--radius);font-size:0.875rem">Claude Code</span>
+          <span style="font-family:var(--font-mono);padding:var(--space-sm) var(--space-md);background:var(--bg-tertiary);border:1px solid var(--border);border-radius:var(--radius);font-size:0.875rem">Cursor</span>
+          <span style="font-family:var(--font-mono);padding:var(--space-sm) var(--space-md);background:var(--bg-tertiary);border:1px solid var(--border);border-radius:var(--radius);font-size:0.875rem">Gemini</span>
+          <span style="font-family:var(--font-mono);padding:var(--space-sm) var(--space-md);background:var(--bg-tertiary);border:1px solid var(--border);border-radius:var(--radius);font-size:0.875rem">Copilot</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer (rendered by JS) -->
+  <footer id="footer" class="footer"></footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

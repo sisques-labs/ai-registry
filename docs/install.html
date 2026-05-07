@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install — AI Registry</title>
+  <meta name="description" content="Install the AI Registry: one-liner, git clone, or manual. Compatible with OpenCode, Claude Code, Cursor, Gemini, and Copilot.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav id="nav" class="nav"></nav>
+
+  <main>
+    <div class="container">
+
+      <div class="page-header">
+        <h1>Installation</h1>
+        <p>Multiple ways to install the AI Registry, depending on your setup and preferences.</p>
+      </div>
+
+      <!-- Quick Install -->
+      <h2>One-Liner</h2>
+      <p>The fastest way to get started. Installs everything at <strong>user level</strong> (default):</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/sisques-labs/ai-registry/main/bootstrap.sh | bash</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <p>Install at <strong>project level</strong>:</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/sisques-labs/ai-registry/main/bootstrap.sh | bash -s -- --project</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <p>Install for a <strong>specific tool</strong>:</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/sisques-labs/ai-registry/main/bootstrap.sh | bash -s -- --tool claude</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <!-- Install Levels -->
+      <h2>Installation Levels</h2>
+      <p>Control where and how the registry is installed:</p>
+
+      <div style="overflow-x:auto;margin:var(--space-lg) 0">
+        <table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:0.8125rem">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border)">
+              <th style="text-align:left;padding:var(--space-sm) var(--space-md);color:var(--text-muted)">Flag</th>
+              <th style="text-align:left;padding:var(--space-sm) var(--space-md);color:var(--text-muted)">Target</th>
+              <th style="text-align:left;padding:var(--space-sm) var(--space-md);color:var(--text-muted)">Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>--user</code></td>
+              <td style="padding:var(--space-sm) var(--space-md)"><code>~/.config/opencode/…</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">System-wide skills</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>--project</code></td>
+              <td style="padding:var(--space-sm) var(--space-md)"><code>./skills/, ./opencode.json</code></td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)">Project-level skills</td>
+            </tr>
+            <tr>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--green)"><code>--tool &lt;tool&gt;</code></td>
+              <td style="padding:var(--space-sm) var(--space-md)">Specific tool config</td>
+              <td style="padding:var(--space-sm) var(--space-md);color:var(--text-secondary)"><code>opencode</code>, <code>claude</code>, <code>cursor</code>, <code>gemini</code>, <code>copilot</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Manual Install -->
+      <h2>Manual Installation</h2>
+      <p>Clone the repo and run the installer directly:</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>git clone https://github.com/sisques-labs/ai-registry.git ~/ai-registry
+cd ~/ai-registry
+
+# Install EVERYTHING at once
+./install.sh all
+
+# Or by category
+./install.sh skills
+./install.sh agents
+./install.sh commands
+
+# Or individually
+./install.sh skill &lt;name&gt;
+./install.sh agent &lt;name&gt;
+./install.sh command &lt;name&gt;</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <p>Use <code>--project</code> flag to install into your current project instead:</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>./install.sh all --project</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <!-- Examples -->
+      <h2>Examples</h2>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code># Install skills at project level for OpenCode
+./install.sh skills --project
+
+# Install a specific agent at user level
+./install.sh agent my-reviewer --user
+
+# Install skills for Claude Code
+./install.sh skills --tool claude
+
+# Install everything at project level
+./install.sh all --project</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <!-- Other Methods -->
+      <h2>Other Distribution Methods</h2>
+
+      <h3>Git Submodule</h3>
+      <p>Add to any project for direct reference:</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot amber"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code>git submodule add https://github.com/sisques-labs/ai-registry.git .ai-registry
+.ai-registry/install.sh all --project</code></pre>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+
+      <h3>GitHub Actions</h3>
+      <p>On every push to <code>main</code>, the registry can auto-deploy and create a GitHub Release with the one-liner install command.</p>
+
+    </div>
+  </main>
+
+  <footer id="footer" class="footer"></footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
