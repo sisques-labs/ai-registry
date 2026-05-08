@@ -10,6 +10,13 @@
       "version": "1.0"
     },
     {
+      "name": "husky",
+      "type": "skill",
+      "description": "Husky git hooks setup for NestJS/Node projects — pre-commit lint-staged on staged files, pre-push build and test suite. Trigger: When adding husky, git hooks, pre-commit, pre-push, lint-staged, or commit hooks to a project.\n",
+      "author": "sisques-labs",
+      "version": "1.0"
+    },
+    {
       "name": "nestjs-sisques-labs",
       "type": "skill",
       "description": "NestJS project conventions for sisques-labs — DDD, CQRS, Hexagonal Architecture with GraphQL (Apollo Federation), MongoDB, Kafka, and pnpm workspaces. Trigger: When creating, writing, reviewing, or refactoring NestJS code in a sisques-labs project.\n",
